@@ -20,6 +20,8 @@ public class Animation extends BukkitRunnable{
 	
 	private Location armLocation;
 	
+	final double angle = Math.PI/360;
+	
 	
 	final double armOffsetX = -0.36500000011176326;
 	final double armOffsetY = 1.4650000112876285;
@@ -50,7 +52,11 @@ public class Animation extends BukkitRunnable{
 		}
 		
 		if (iterations > 20) {
-			hammer.rotateXR(Math.PI/180, armLocation, calculateDistance(hammer.getLocation(), armLocation));
+			hammer.rotate(angle * -1, armLocation);
+			
+			EulerAngle previousPose = armorStand.getRightArmPose();
+			
+			armorStand.setRightArmPose(new EulerAngle(previousPose.getX() + angle, previousPose.getY(), previousPose.getZ()));
 		}
 		
 		iterations++;

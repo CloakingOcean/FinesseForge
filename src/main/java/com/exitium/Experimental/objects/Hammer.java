@@ -108,72 +108,75 @@ public class Hammer {
 		rotateXR(Math.toRadians(degrees));
 	}
 	
-	public void rotateXD(double degrees, Location location, double radius) {
-		rotateXR(Math.toRadians(degrees), location, radius);
-	}
+//	public void rotateXD(double degrees, Location location, double radius) {
+//		rotateXR(Math.toRadians(degrees), location, radius);
+//	}
 	
 	public void rotateXR(double radians) {
 		// Fill out later
 	}
 	
-	public void rotateXR(double radians, Location location, double radius) {
+	public void rotate(double angle, Location location) {
+		
+		
 		for (int x = 0; x < xLength; x++) {
 			for (int z = 0; z < zLength; z++) {
 				for (int y = 0; y < yLength; y++) {
-					
+		
 					Point point = points[y][z][x];
 					
 					if (point == null) {
 						continue;
 					}
-					
-					Location pLoc = point.getLocation();
-					Location cLoc = location;
-					
-					double pX = pLoc.getX();
-					double pY = pLoc.getY();
-					
-//					double cX = cLoc.getX();
-//					double cY = cLoc.getY();
-					
-					double cX = 0;
-					double cY = 0;
-//					
-//					double pZT = pZ - cZ;
-//					double pYT = pY - cY;
-//					
-//					
-//					radians += Math.atan2(pY, pZ);
-//					
-//					
-//					double targetZ = Math.sin(radians);
-//					double targetY = Math.cos(radians);
-					
-					
-					double newX = cX + (pX-cX) * Math.cos(radians) - (pY-cY) * Math.sin(radians);
-					double newY = cY + (pX-cX)*Math.sin(radians) + (pY-cY) * Math.cos(x);
 				
 					
-//					double targetY = radius * Math.cos(radians);
-//					double targetZ = radius * Math.sin(radius);
-//					
-//					double targetX = 0;
-//					
-//					targetY += point.getLocation().getY();
-//					targetZ += point.getLocation().getZ();
-//					
-//					targetX += point.getLocation().getX();
-//					
+					Location pLoc = point.getLocation();
 					
-					Bukkit.getLogger().info("Z: " + newX);
-					Bukkit.getLogger().info("Y: " + newY);
-//					Bukkit.getLogger().info("Z: " + targetY);
-					Location newLocation = new Location(pLoc.getWorld(), newX, newY, pLoc.getZ());
+					Location cLoc = location;
 					
-					point.updateLocation(newLocation);
+					Bukkit.getLogger().info("cLocY : " + cLoc.getY());
+					Bukkit.getLogger().info("cLocZ : " + cLoc.getZ());
+					
+					Bukkit.getLogger().info("pLocY : " + pLoc.getY());
+					Bukkit.getLogger().info("pLocZ : " + pLoc.getZ());
+					
+					Bukkit.getLogger().info("Before : " + pLoc.toString());
+					
+					pLoc.subtract(0, cLoc.getY(), cLoc.getZ());
+					
+					Bukkit.getLogger().info("After : " + pLoc.toString());
+					Bukkit.getLogger().info("After Z: " + pLoc.getZ());
+					Bukkit.getLogger().info("After Y: " + pLoc.getY());
+					
+					angle += Math.atan2(pLoc.getY(), pLoc.getZ());
+					
+					double distance = Math.sqrt(Math.pow(pLoc.getZ(), 2) + Math.pow(pLoc.getY(), 2));
+					
+					
+					
+					double targetZ = distance * Math.cos(angle);
+					double targetY = distance * Math.sin(angle);
+					
+					targetZ += cLoc.getZ();
+					targetY += cLoc.getY();
+					
+					
+					Location modified = pLoc.clone();
+					modified.setZ(targetZ);
+					modified.setY(targetY);
+					
+					point.updateLocation(modified);
+					
+					point.display();
+		
 				}
 			}
 		}
+		
+		
+		
+		
+		
 	}
 	
 	
@@ -254,54 +257,12 @@ public class Hammer {
 			for (int x = 0; x < xLength; x++) {
 				for (int z = 0; z < zLength; z++) {
 					for (int y = 0; y < yLength; y++) {
-						
 						Point point = points[y][z][x];
 						
 						if (point == null) {
 							continue;
 						}
 						
-						
-//						
-//						Location pLoc = point.getLocation();
-//						
-//						Location cLoc = Bukkit.getWorlds().get(0).getPlayers().get(0).getLocation();
-//						
-//						Bukkit.getLogger().info("cLocY : " + cLoc.getY());
-//						Bukkit.getLogger().info("cLocZ : " + cLoc.getZ());
-//						
-//						Bukkit.getLogger().info("pLocY : " + pLoc.getY());
-//						Bukkit.getLogger().info("pLocZ : " + pLoc.getZ());
-//						
-//						Bukkit.getLogger().info("Before : " + pLoc.toString());
-//						
-//						pLoc.subtract(0, cLoc.getY(), cLoc.getZ());
-//						
-//						Bukkit.getLogger().info("After : " + pLoc.toString());
-//						Bukkit.getLogger().info("After Z: " + pLoc.getZ());
-//						Bukkit.getLogger().info("After Y: " + pLoc.getY());
-//						
-//						double angle = Math.atan2(pLoc.getY(), pLoc.getZ());
-//						
-//						angle += Math.PI/180;
-//						
-//						
-//						double distance = Math.sqrt(Math.pow(pLoc.getZ(), 2) + Math.pow(pLoc.getY(), 2));
-//						
-//						
-//						
-//						double targetZ = distance * Math.cos(angle);
-//						double targetY = distance * Math.sin(angle);
-//						
-//						targetZ += cLoc.getZ();
-//						targetY += cLoc.getY();
-//						
-//						
-//						Location modified = pLoc.clone();
-//						modified.setZ(targetZ);
-//						modified.setY(targetY);
-//						
-//						point.updateLocation(modified);
 						
 						point.display();
 						
