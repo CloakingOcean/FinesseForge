@@ -128,24 +128,28 @@ public class Hammer {
 					Location pLoc = point.getLocation();
 					Location cLoc = location;
 					
-					double pZ = pLoc.getZ();
+					double pX = pLoc.getX();
 					double pY = pLoc.getY();
-//					
-//					double cZ = cLoc.getZ();
+					
+//					double cX = cLoc.getX();
 //					double cY = cLoc.getY();
+					
+					double cX = 0;
+					double cY = 0;
 //					
 //					double pZT = pZ - cZ;
 //					double pYT = pY - cY;
 //					
 //					
-					radians += Math.atan2(pY, pZ);
+//					radians += Math.atan2(pY, pZ);
+//					
+//					
+//					double targetZ = Math.sin(radians);
+//					double targetY = Math.cos(radians);
 					
 					
-					double targetZ = Math.sin(radians);
-					double targetY = Math.cos(radians);
-					
-					
-					
+					double newX = cX + (pX-cX) * Math.cos(radians) - (pY-cY) * Math.sin(radians);
+					double newY = cY + (pX-cX)*Math.sin(radians) + (pY-cY) * Math.cos(x);
 				
 					
 //					double targetY = radius * Math.cos(radians);
@@ -159,10 +163,10 @@ public class Hammer {
 //					targetX += point.getLocation().getX();
 //					
 					
-					Bukkit.getLogger().info("Z: " + targetZ);
-					Bukkit.getLogger().info("Y: " + targetY);
+					Bukkit.getLogger().info("Z: " + newX);
+					Bukkit.getLogger().info("Y: " + newY);
 //					Bukkit.getLogger().info("Z: " + targetY);
-					Location newLocation = new Location(pLoc.getWorld(), pLoc.getY(), targetY, targetZ);
+					Location newLocation = new Location(pLoc.getWorld(), newX, newY, pLoc.getZ());
 					
 					point.updateLocation(newLocation);
 				}
@@ -250,7 +254,7 @@ public class Hammer {
 						
 						Location origin = Bukkit.getWorlds().get(0).getPlayers().get(0).getLocation().clone().add(-5, 0, 0);
 						
-						rotateXR(Math.PI/180, origin, 3);
+						rotateXR(Math.PI/8, origin, 3);
 						
 						
 						
