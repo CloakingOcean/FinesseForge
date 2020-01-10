@@ -1,0 +1,6 @@
+name: Experimental
+main: com.exitium.Experimental.Main
+version: 1.0
+commands:
+  ex:
+    description: Main command
