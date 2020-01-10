@@ -262,8 +262,13 @@ public class Hammer {
 						
 						angle += Math.PI/90;
 						
-						double targetX = pLoc.getX() *Math.cos(angle) - pLoc.getY()- Math.sin(angle);
-						double targetY = pLoc.getY() * Math.acos(angle) + x * Math.sin(angle);
+						
+						double distance = Math.sqrt(Math.pow(pLoc.getX(), 2) + Math.pow(pLoc.getY(), 2));
+						
+						
+						
+						double targetX = distance * Math.cos(angle);
+						double targetY = distance * Math.sin(angle);
 						
 						Location modified = pLoc.clone();
 						modified.setX(targetX);
