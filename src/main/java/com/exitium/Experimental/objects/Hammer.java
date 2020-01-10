@@ -76,7 +76,7 @@ public class Hammer {
 		
 		HammerShower shower = new HammerShower();
 		
-		shower.runTaskTimer(plugin, 20L, 20L);
+		shower.runTaskTimer(plugin, 20L, 1L);
 	}
 	
 	private void initializeLocations() {
@@ -258,23 +258,23 @@ public class Hammer {
 //						
 //						rotateXR(Math.PI/8, origin, 3);
 						
-						double angle = Math.atan2(pLoc.getY(), pLoc.getX());
+						double angle = Math.atan2(pLoc.getY(), pLoc.getZ());
 						
-						angle += Math.PI/90;
-						
-						
-						double distance = Math.sqrt(Math.pow(pLoc.getX(), 2) + Math.pow(pLoc.getY(), 2));
+						angle += Math.PI/360;
 						
 						
+						double distance = Math.sqrt(Math.pow(pLoc.getZ(), 2) + Math.pow(pLoc.getY(), 2));
 						
-						double targetX = distance * Math.cos(angle);
+						
+						
+						double targetZ = distance * Math.cos(angle);
 						double targetY = distance * Math.sin(angle);
 						
 						Location modified = pLoc.clone();
-						modified.setX(targetX);
+						modified.setZ(targetZ);
 						modified.setY(targetY);
 						
-						Bukkit.getLogger().info("X: " + targetX);
+						Bukkit.getLogger().info("Z: " + targetZ);
 						Bukkit.getLogger().info("Y: " + targetY);
 						
 						point.updateLocation(modified);
