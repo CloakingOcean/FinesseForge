@@ -95,6 +95,8 @@ public class Hammer {
 				}
 			}
 		}
+		
+		this.location = points[0][2][1].getLocation();
 	}
 	
 	
@@ -252,15 +254,29 @@ public class Hammer {
 							continue;
 						}
 						
+						
+						
 						Location pLoc = point.getLocation();
 						
-//						Location origin = Bukkit.getWorlds().get(0).getPlayers().get(0).getLocation().clone().add(-5, 0, 0);
-//						
-//						rotateXR(Math.PI/8, origin, 3);
+						Location cLoc = Bukkit.getWorlds().get(0).getSpawnLocation();
+						
+						Bukkit.getLogger().info("cLocY : " + cLoc.getY());
+						Bukkit.getLogger().info("cLocZ : " + cLoc.getZ());
+						
+						Bukkit.getLogger().info("pLocY : " + pLoc.getY());
+						Bukkit.getLogger().info("pLocZ : " + pLoc.getZ());
+						
+						Bukkit.getLogger().info("Before : " + pLoc.toString());
+						
+						pLoc.subtract(0, cLoc.getY(), cLoc.getZ());
+						
+						Bukkit.getLogger().info("After : " + pLoc.toString());
+						Bukkit.getLogger().info("After Z: " + pLoc.getZ());
+						Bukkit.getLogger().info("After Y: " + pLoc.getY());
 						
 						double angle = Math.atan2(pLoc.getY(), pLoc.getZ());
 						
-						angle += Math.PI/360;
+						angle += Math.PI/180;
 						
 						
 						double distance = Math.sqrt(Math.pow(pLoc.getZ(), 2) + Math.pow(pLoc.getY(), 2));
@@ -270,12 +286,16 @@ public class Hammer {
 						double targetZ = distance * Math.cos(angle);
 						double targetY = distance * Math.sin(angle);
 						
+						targetZ += cLoc.getZ();
+						targetY += cLoc.getY();
+						
+						
 						Location modified = pLoc.clone();
 						modified.setZ(targetZ);
 						modified.setY(targetY);
 						
-						Bukkit.getLogger().info("Z: " + targetZ);
-						Bukkit.getLogger().info("Y: " + targetY);
+//						Bukkit.getLogger().info("Z: " + targetZ);
+//						Bukkit.getLogger().info("Y: " + targetY);
 						
 						point.updateLocation(modified);
 						
