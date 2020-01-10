@@ -176,6 +176,13 @@ public class Hammer {
 		}
 	}
 	
+	
+	
+	public Location getLocation() {
+		return this.location.clone();
+	}
+	
+	
 	/*
 	 *	Internal class to wrap point information 
 	 */
