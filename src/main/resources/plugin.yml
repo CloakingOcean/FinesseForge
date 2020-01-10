@@ -1,6 +1,3 @@
-name: Experimental
-main: com.exitium.Experimental.Main
+name: FinesseForge
+main: com.exitium.FinesseForge.Main
 version: 1.0
-commands:
-  ex:
-    description: Main command
