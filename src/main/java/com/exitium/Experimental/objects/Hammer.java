@@ -70,7 +70,7 @@ public class Hammer {
 	};
 	
 	public Hammer(Location location, Plugin plugin) {
-		this.location = location;
+		this.location = location.clone().subtract(0.42857142857, 0.85714285714, 0.71428571428);
 		
 		initializeLocations();
 		
@@ -255,49 +255,46 @@ public class Hammer {
 						}
 						
 						
-						
-						Location pLoc = point.getLocation();
-						
-						Location cLoc = Bukkit.getWorlds().get(0).getSpawnLocation();
-						
-						Bukkit.getLogger().info("cLocY : " + cLoc.getY());
-						Bukkit.getLogger().info("cLocZ : " + cLoc.getZ());
-						
-						Bukkit.getLogger().info("pLocY : " + pLoc.getY());
-						Bukkit.getLogger().info("pLocZ : " + pLoc.getZ());
-						
-						Bukkit.getLogger().info("Before : " + pLoc.toString());
-						
-						pLoc.subtract(0, cLoc.getY(), cLoc.getZ());
-						
-						Bukkit.getLogger().info("After : " + pLoc.toString());
-						Bukkit.getLogger().info("After Z: " + pLoc.getZ());
-						Bukkit.getLogger().info("After Y: " + pLoc.getY());
-						
-						double angle = Math.atan2(pLoc.getY(), pLoc.getZ());
-						
-						angle += Math.PI/180;
-						
-						
-						double distance = Math.sqrt(Math.pow(pLoc.getZ(), 2) + Math.pow(pLoc.getY(), 2));
-						
-						
-						
-						double targetZ = distance * Math.cos(angle);
-						double targetY = distance * Math.sin(angle);
-						
-						targetZ += cLoc.getZ();
-						targetY += cLoc.getY();
-						
-						
-						Location modified = pLoc.clone();
-						modified.setZ(targetZ);
-						modified.setY(targetY);
-						
-//						Bukkit.getLogger().info("Z: " + targetZ);
-//						Bukkit.getLogger().info("Y: " + targetY);
-						
-						point.updateLocation(modified);
+//						
+//						Location pLoc = point.getLocation();
+//						
+//						Location cLoc = Bukkit.getWorlds().get(0).getPlayers().get(0).getLocation();
+//						
+//						Bukkit.getLogger().info("cLocY : " + cLoc.getY());
+//						Bukkit.getLogger().info("cLocZ : " + cLoc.getZ());
+//						
+//						Bukkit.getLogger().info("pLocY : " + pLoc.getY());
+//						Bukkit.getLogger().info("pLocZ : " + pLoc.getZ());
+//						
+//						Bukkit.getLogger().info("Before : " + pLoc.toString());
+//						
+//						pLoc.subtract(0, cLoc.getY(), cLoc.getZ());
+//						
+//						Bukkit.getLogger().info("After : " + pLoc.toString());
+//						Bukkit.getLogger().info("After Z: " + pLoc.getZ());
+//						Bukkit.getLogger().info("After Y: " + pLoc.getY());
+//						
+//						double angle = Math.atan2(pLoc.getY(), pLoc.getZ());
+//						
+//						angle += Math.PI/180;
+//						
+//						
+//						double distance = Math.sqrt(Math.pow(pLoc.getZ(), 2) + Math.pow(pLoc.getY(), 2));
+//						
+//						
+//						
+//						double targetZ = distance * Math.cos(angle);
+//						double targetY = distance * Math.sin(angle);
+//						
+//						targetZ += cLoc.getZ();
+//						targetY += cLoc.getY();
+//						
+//						
+//						Location modified = pLoc.clone();
+//						modified.setZ(targetZ);
+//						modified.setY(targetY);
+//						
+//						point.updateLocation(modified);
 						
 						point.display();
 						
