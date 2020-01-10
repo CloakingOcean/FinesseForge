@@ -38,7 +38,7 @@ public class Main extends JavaPlugin{
 			particleLocation.getWorld().spigot().playEffect(particleLocation, Effect.COLOURED_DUST, 0, 0, r, g, b, 1, 0, 150);
 			particleLocation.getWorld().playEffect(playerLocation.clone().add(playerLocation.getDirection().clone().normalize().multiply(-1)), Effect.LAVA_POP, 0);
 			
-			Hammer hammer = new Hammer(playerLocation.clone().add(5, 0, 0), this);
+			Hammer hammer = new Hammer(playerLocation.clone().add(0, 0, 0), this);
 		}
 		
 		

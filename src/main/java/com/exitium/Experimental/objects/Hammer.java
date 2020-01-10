@@ -76,7 +76,7 @@ public class Hammer {
 		
 		HammerShower shower = new HammerShower();
 		
-		shower.runTaskTimer(plugin, 20L, 1L);
+		shower.runTaskTimer(plugin, 20L, 20L);
 	}
 	
 	private void initializeLocations() {
@@ -252,11 +252,27 @@ public class Hammer {
 							continue;
 						}
 						
-						Location origin = Bukkit.getWorlds().get(0).getPlayers().get(0).getLocation().clone().add(-5, 0, 0);
+						Location pLoc = point.getLocation();
 						
-						rotateXR(Math.PI/8, origin, 3);
+//						Location origin = Bukkit.getWorlds().get(0).getPlayers().get(0).getLocation().clone().add(-5, 0, 0);
+//						
+//						rotateXR(Math.PI/8, origin, 3);
 						
+						double angle = Math.atan2(pLoc.getY(), pLoc.getX());
 						
+						angle += Math.PI/90;
+						
+						double targetX = pLoc.getX() *Math.cos(angle) - pLoc.getY()- Math.sin(angle);
+						double targetY = pLoc.getY() * Math.acos(angle) + x * Math.sin(angle);
+						
+						Location modified = pLoc.clone();
+						modified.setX(targetX);
+						modified.setY(targetY);
+						
+						Bukkit.getLogger().info("X: " + targetX);
+						Bukkit.getLogger().info("Y: " + targetY);
+						
+						point.updateLocation(modified);
 						
 						point.display();
 						
