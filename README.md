@@ -37,7 +37,7 @@ Once you have everything running, simply join the server, and right-click an end
 on top of whichever ender chest you clicked.
 
 # Contact
-Shawn Whitaker - [@CloakingOcean] - shawn.w8465@gmail.com
+Shawn Whitaker - shawn.w8465@gmail.com - [@CloakingOcean]
 
 
 
