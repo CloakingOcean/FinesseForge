@@ -19,7 +19,7 @@ alt="FinesseForge Demonstration" width="480" height="360" border="10" /></a>
 
 # Getting Started
 
-# Prerequisites
+## Prerequisites
 This project utilizes the Maven build automation tool. After [installing] Maven, use the command `mvn clean install` in the
 main project to download all of the required dependencies for this project. Currently, this project only depends on `spigot-api` 
 version `1.8.8-R0.1-SNAPSHOT`.
@@ -31,7 +31,7 @@ In order to run this [`Spigot Plugin`], you need a [Bukkit]/[Spigot] Server with
 
 Just stick the FinessForge.jar into the plugins folder of the server.
 
-# Usage
+## Usage
 
 Once you have everything running, simply join the server, and right-click an ender chest. The animation will play immediately
 on top of whichever ender chest you clicked.
